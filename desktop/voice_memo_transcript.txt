@@ -1,0 +1,15 @@
+Voice Memo - Jan 30, 2025
+
+Okay so I just got out of the product strategy meeting and here are my takeaways:
+
+First, they want to pivot the analytics feature from a simple dashboard to a full self-serve reporting tool. This is WAY more scope than what we estimated. I need to push back on the timeline or we need more people.
+
+Second, the mobile app launch is being pushed to Q3. Originally it was supposed to be end of Q2. The design team is still iterating on the mobile-specific flows.
+
+Third - and this is important - the CEO wants a live demo for the board meeting on March 18, 2025 at 9am. We need the permissions feature AND the basic analytics dashboard working by then. No pressure.
+
+Oh also, Sarah mentioned she's going on parental leave starting April 1. We need to figure out coverage for her projects. Set up a knowledge transfer plan. Maybe schedule that for the week of March 10?
+
+Hmm what else... oh right, I should look into that monitoring tool that Jake recommended. I think it was called Grafana Cloud? Or maybe it was Datadog. I'll ask him again at the team lunch tomorrow.
+
+End memo.

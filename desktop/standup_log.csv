@@ -1,0 +1,9 @@
+date,yesterday,today,blockers
+2025-01-27,Finished auth middleware PR,Start integration tests for auth,None
+2025-01-28,Wrote integration tests,Fix flaky test in CI + review PR #501,CI runner is slow - asked DevOps to look into it
+2025-01-29,Fixed flaky tests - was a race condition,Deploy auth changes to staging,Waiting on DevOps for staging credentials
+2025-01-30,Got staging creds and deployed,Run QA validation on staging,None
+2025-01-31,QA found edge case in token refresh,Fix token refresh bug + prep for sprint review,Sprint review is at 4pm today
+2025-02-03,Fixed token refresh and deployed,Start work on user roles feature,Need design specs - meeting with PM at 2pm
+2025-02-04,Got specs from PM,Set up DB migrations for roles tables,None
+2025-02-05,DB migrations done,Build role assignment API endpoints,Code review backlog is piling up

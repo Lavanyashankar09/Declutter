@@ -1,0 +1,16 @@
+services:
+  declutter:
+    build: .
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+    volumes:
+      - ./desktop:/app/desktop:ro
+      - ./output:/app/output
+    command: ["python", "main.py", "./desktop", "-o", "./output"]
+
+  query:
+    build: .
+    volumes:
+      - ./output:/app/output
+    entrypoint: ["python", "query.py"]
+    # Usage: docker compose run query "your search query"

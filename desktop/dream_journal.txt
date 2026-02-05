@@ -1,0 +1,9 @@
+Feb 2 - Had that recurring dream about showing up to a presentation completely unprepared. Probably anxiety about the Q1 planning presentation on Feb 10 at 10am.
+
+Feb 5 - Dreamt I was debugging a production outage but every time I fixed one thing, two more broke. Classic.
+
+Unrelated: need to call mom on her birthday, Feb 16. Maybe plan a dinner.
+
+Feb 8 - Actually had a good idea while half asleep: what if we used webhooks instead of polling for the notification system? Write this up and propose it at the next architecture meeting.
+
+Note to self: the new standing desk arrives on Feb 13. Need to be home for delivery between 9am and 1pm.

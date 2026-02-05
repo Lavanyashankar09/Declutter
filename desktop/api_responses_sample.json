@@ -1,0 +1,172 @@
+{
+  "test_snapshots": {
+    "description": "API response snapshots for integration tests. Do not modify manually.",
+    "generated_at": "2025-01-14T03:22:11Z",
+    "environment": "staging"
+  },
+  "snapshots": [
+    {
+      "endpoint": "GET /api/users",
+      "status": 200,
+      "response": {
+        "data": [
+          {"id": 1, "username": "alice.johnson", "email": "alice@example.com", "role": "admin", "active": true, "created_at": "2024-06-15T10:30:00Z"},
+          {"id": 2, "username": "bob.smith", "email": "bob@example.com", "role": "editor", "active": true, "created_at": "2024-06-20T14:22:00Z"},
+          {"id": 3, "username": "carol.white", "email": "carol@example.com", "role": "viewer", "active": true, "created_at": "2024-07-01T09:15:00Z"},
+          {"id": 4, "username": "dave.brown", "email": "dave@example.com", "role": "editor", "active": false, "created_at": "2024-07-05T16:45:00Z"},
+          {"id": 5, "username": "eve.davis", "email": "eve@example.com", "role": "admin", "active": true, "created_at": "2024-07-10T11:00:00Z"},
+          {"id": 6, "username": "frank.miller", "email": "frank@example.com", "role": "viewer", "active": true, "created_at": "2024-07-15T08:30:00Z"},
+          {"id": 7, "username": "grace.wilson", "email": "grace@example.com", "role": "editor", "active": true, "created_at": "2024-07-20T13:20:00Z"},
+          {"id": 8, "username": "hank.moore", "email": "hank@example.com", "role": "viewer", "active": true, "created_at": "2024-08-01T10:00:00Z"},
+          {"id": 9, "username": "iris.taylor", "email": "iris@example.com", "role": "editor", "active": false, "created_at": "2024-08-05T15:30:00Z"},
+          {"id": 10, "username": "jack.anderson", "email": "jack@example.com", "role": "viewer", "active": true, "created_at": "2024-08-10T09:45:00Z"}
+        ],
+        "pagination": {
+          "page": 1,
+          "per_page": 25,
+          "total": 47,
+          "total_pages": 2
+        }
+      }
+    },
+    {
+      "endpoint": "GET /api/users/1",
+      "status": 200,
+      "response": {
+        "data": {
+          "id": 1,
+          "username": "alice.johnson",
+          "email": "alice@example.com",
+          "role": "admin",
+          "active": true,
+          "created_at": "2024-06-15T10:30:00Z",
+          "updated_at": "2025-01-10T08:15:00Z",
+          "profile": {
+            "full_name": "Alice Johnson",
+            "department": "Engineering",
+            "title": "Senior Software Engineer",
+            "avatar_url": "https://cdn.example.com/avatars/alice.jpg",
+            "timezone": "America/New_York",
+            "bio": "Full-stack developer with 8 years of experience. Passionate about distributed systems and developer tooling."
+          },
+          "permissions": ["users:read", "users:write", "users:delete", "roles:read", "roles:write", "settings:read", "settings:write", "analytics:read"]
+        }
+      }
+    },
+    {
+      "endpoint": "GET /api/users/999",
+      "status": 404,
+      "response": {
+        "error": {
+          "code": "USER_NOT_FOUND",
+          "message": "No user found with id 999",
+          "details": null
+        }
+      }
+    },
+    {
+      "endpoint": "POST /api/users",
+      "request_body": {"username": "test.user", "email": "test@example.com", "role_id": 3},
+      "status": 201,
+      "response": {
+        "data": {
+          "id": 48,
+          "username": "test.user",
+          "email": "test@example.com",
+          "role": "viewer",
+          "active": true,
+          "created_at": "2025-01-14T03:22:11Z"
+        }
+      }
+    },
+    {
+      "endpoint": "POST /api/users",
+      "request_body": {"username": "alice.johnson", "email": "new@example.com", "role_id": 3},
+      "status": 409,
+      "response": {
+        "error": {
+          "code": "DUPLICATE_USERNAME",
+          "message": "A user with username 'alice.johnson' already exists",
+          "details": {"field": "username", "value": "alice.johnson"}
+        }
+      }
+    },
+    {
+      "endpoint": "PUT /api/users/12",
+      "request_body": {"email": "updated.email@example.com"},
+      "status": 200,
+      "response": {
+        "data": {
+          "id": 12,
+          "username": "leo.clark",
+          "email": "updated.email@example.com",
+          "role": "editor",
+          "active": true,
+          "updated_at": "2025-01-14T03:22:11Z"
+        }
+      }
+    },
+    {
+      "endpoint": "DELETE /api/users/6",
+      "status": 204,
+      "response": null
+    },
+    {
+      "endpoint": "GET /api/roles",
+      "status": 200,
+      "response": {
+        "data": [
+          {"id": 1, "name": "admin", "description": "Full system access", "user_count": 5},
+          {"id": 2, "name": "editor", "description": "Can create and edit content", "user_count": 18},
+          {"id": 3, "name": "viewer", "description": "Read-only access", "user_count": 24}
+        ]
+      }
+    },
+    {
+      "endpoint": "POST /api/roles",
+      "request_body": {"name": "moderator", "description": "Can moderate user content"},
+      "status": 201,
+      "response": {
+        "data": {
+          "id": 4,
+          "name": "moderator",
+          "description": "Can moderate user content",
+          "user_count": 0
+        }
+      }
+    },
+    {
+      "endpoint": "GET /api/users?role=admin",
+      "status": 200,
+      "response": {
+        "data": [
+          {"id": 1, "username": "alice.johnson", "email": "alice@example.com", "role": "admin", "active": true},
+          {"id": 5, "username": "eve.davis", "email": "eve@example.com", "role": "admin", "active": true},
+          {"id": 17, "username": "quinn.harris", "email": "quinn@example.com", "role": "admin", "active": true},
+          {"id": 28, "username": "betty.ross", "email": "betty@example.com", "role": "admin", "active": true},
+          {"id": 41, "username": "sam.chen", "email": "sam@example.com", "role": "admin", "active": true}
+        ],
+        "pagination": {
+          "page": 1,
+          "per_page": 25,
+          "total": 5,
+          "total_pages": 1
+        }
+      }
+    },
+    {
+      "endpoint": "GET /api/health",
+      "status": 200,
+      "response": {
+        "status": "healthy",
+        "version": "2.3.1",
+        "uptime_seconds": 847293,
+        "checks": {
+          "database": {"status": "connected", "latency_ms": 3},
+          "redis": {"status": "connected", "latency_ms": 1},
+          "s3": {"status": "connected", "latency_ms": 45}
+        }
+      }
+    }
+  ]
+}

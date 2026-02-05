@@ -1,0 +1,24 @@
+Project Ideas Braindump
+======================
+
+1. Build a CLI tool that converts markdown to presentation slides
+   - Could use reveal.js under the hood
+   - Target audience: developers who hate PowerPoint
+
+2. Home automation dashboard
+   - Raspberry Pi + sensors
+   - Real-time temperature/humidity monitoring
+   - Maybe integrate with Home Assistant?
+
+3. Recipe scraper that strips out the life stories from food blogs
+   - Just give me the ingredients and steps!!
+   - Output to standardized markdown format
+
+NOTE: Sprint retrospective is on Feb 20, 2025 at 3:00 PM. Don't forget to prep feedback.
+
+4. Open source contribution tracker
+   - GitHub API integration
+   - Weekly digest emails
+   - Track PRs, issues, and reviews
+
+Reminder: submit expense report by end of day Friday Feb 7 2025

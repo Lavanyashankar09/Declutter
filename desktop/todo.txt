@@ -1,0 +1,12 @@
+TODO
+====
+[x] Fix broken CI pipeline
+[ ] Write unit tests for UserService
+[ ] Update API documentation for v2 endpoints
+[ ] Review Sarah's PR #487 - database indexing changes
+[x] Set up staging environment
+[ ] Migrate legacy user data (deadline: Feb 28 2025)
+[ ] Prepare demo for stakeholder meeting on March 10 2025 at 1pm
+[ ] Book flights for Denver conference (March 22-25 2025)
+[ ] Renew AWS certification before it expires April 15 2025
+[x] Order new monitor for home office
