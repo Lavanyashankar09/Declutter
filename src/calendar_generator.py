@@ -1,6 +1,6 @@
 """
 Calendar Generator Module
-Takes Claude's processed calendar events and saves as jCal (RFC 7265) format.
+Takes the processed calendar events and saves as jCal (RFC 7265) format.
 """
 
 import json

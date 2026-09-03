@@ -20,8 +20,11 @@ A CLI tool that transforms a messy directory of scattered notes, todos, and idea
 # Install dependencies
 pip install -r requirements.txt
 
-# Run full pipeline (calls Claude API)
-ANTHROPIC_API_KEY="your-key" python main.py
+# Configure your OpenRouter key
+cp .env.example .env   # then paste your key into .env
+
+# Run full pipeline (calls OpenRouter)
+python main.py
 
 # Query the knowledge base
 python query.py "AWS"
@@ -35,7 +38,7 @@ python query.py "cat"
 docker build -t desktop-declutter .
 
 # Run full pipeline
-docker run -e ANTHROPIC_API_KEY="your-key" \
+docker run -e OPENROUTER_API_KEY="your-key" \
   -v $(pwd)/desktop:/app/desktop:ro \
   -v $(pwd)/output:/app/output \
   desktop-declutter python main.py
@@ -45,11 +48,11 @@ docker run -v $(pwd)/output:/app/output \
   desktop-declutter python query.py "AWS"
 ```
 
-### Option 3: Docker Compose 
+### Option 3: Docker Compose
 
 ```bash
 # Run with API key inline
-ANTHROPIC_API_KEY="your-key" docker compose up declutter
+OPENROUTER_API_KEY="your-key" docker compose up declutter
 
 # Query the knowledge base
 docker compose run query "meetings"
@@ -60,7 +63,7 @@ docker compose run query "meetings"
 
 ### main.py - rebuild knowledge base
 ```bash
-# Rebuild vector store only (no Claude API call) - uses existing output
+# Rebuild vector store only (no LLM API call) - uses existing output
 python main.py --rebuild-vectordb
 ```
 
@@ -81,11 +84,11 @@ python query.py "ideas" -t note
 
 ## Architecture & Design Decisions
 
-### Single Claude API Call
+### Single LLM API Call
 Instead of processing files one-by-one (23 API calls), we send ALL content in one request:
-- Total ~27K characters = ~3% of Claude's context limit
+- Total ~27K characters = a small fraction of the model's context limit
 - Faster and cheaper
-- Claude can see relationships between files
+- The model can see relationships between files
 
 ### Smart Extraction for Large Files
 Large/machine-generated files are pre-processed before sending to Claude:
@@ -98,28 +101,37 @@ Large/machine-generated files are pre-processed before sending to Claude:
 | dependencies_audit.csv | 5KB | 2.3KB | Notes column only |
 
 ### LLM-Discovered Topics
-Rather than pre-defining topics, Claude discovers 5-7 natural categories:
+Rather than pre-defining topics, the model discovers 5-7 natural categories:
 - "technical", "work", "personal", "meetings", "learning", "ideas", "expenses"
 
 ### Image Processing
-Images are analyzed with Claude Vision API and descriptions are included in the content for categorization.
+Images are analyzed with a vision model and descriptions are included in the content for categorization.
 
 ---
 
 ## Technologies Used
 - **Python 3.11**
-- **Anthropic Claude API** - Content classification and extraction
-- **Claude Vision** - Image analysis
+- **OpenRouter** - LLM gateway (default model: `google/gemini-2.5-flash`)
+- **Vision model** - Image analysis, via the same OpenRouter endpoint
 - **ChromaDB** - Vector database for semantic search
 - **Docker** - Containerization
+
+### Configuration
+Set in `.env` (see `.env.example`):
+
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `OPENROUTER_API_KEY` | _(required)_ | OpenRouter API key |
+| `OPENROUTER_MODEL` | `google/gemini-2.5-flash` | Model for text extraction |
+| `OPENROUTER_VISION_MODEL` | `google/gemini-2.5-flash` | Model for image descriptions |
 
 ---
 
 ## Trade-offs & Limitations
 
 ### Limitations
-- Topic consistency: Claude may generate slightly different topics on re-runs
-- Claude might miss some content when processing all files at once
+- Topic consistency: the model may generate slightly different topics on re-runs
+- The model might miss some content when processing all files at once
 
 ---
 

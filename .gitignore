@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+
+# Personal input files and generated artifacts
+desktop/
+output/
+
+__pycache__/
+*.py[cod]
+.venv/
+venv/

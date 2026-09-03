@@ -1,6 +1,6 @@
 """
 Build Vector Store from existing output
-No Claude API call needed - uses the already processed data.
+No LLM API call needed - uses the already processed data.
 """
 
 import json

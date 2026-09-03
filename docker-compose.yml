@@ -2,7 +2,9 @@ services:
   declutter:
     build: .
     environment:
-      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY}
+      - OPENROUTER_MODEL=${OPENROUTER_MODEL:-google/gemini-2.5-flash}
+      - OPENROUTER_VISION_MODEL=${OPENROUTER_VISION_MODEL:-google/gemini-2.5-flash}
     volumes:
       - ./desktop:/app/desktop:ro
       - ./output:/app/output

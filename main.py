@@ -1,17 +1,21 @@
 """
 Desktop Declutter Agent - Main Pipeline
-Orchestrates the full processing pipeline with a single Claude API call.
+Orchestrates the full processing pipeline with a single LLM API call.
 """
 
 import argparse
 import os
 import sys
 
+from dotenv import load_dotenv
+
 from src.calendar_generator import CalendarGenerator
 from src.file_parser import FileParser
 from src.journal_generator import JournalGenerator
 from src.llm_processor import LLMProcessor
 from src.vector_store import VectorStore
+
+load_dotenv()
 
 
 def main():
@@ -33,7 +37,7 @@ def main():
     parser.add_argument(
         "--rebuild-vectordb",
         action="store_true",
-        help="Only rebuild vector store from existing output (no Claude API call)",
+        help="Only rebuild vector store from existing output (no LLM API call)",
     )
 
     args = parser.parse_args()
@@ -45,7 +49,7 @@ def main():
     print(f"Output: {args.output}")
     print()
 
-    # If --rebuild-vectordb flag, skip Claude and just rebuild from existing files
+    # If --rebuild-vectordb flag, skip the LLM and just rebuild from existing files
     if args.rebuild_vectordb:
         print("Mode: Rebuilding vector store from existing output...")
         print()
@@ -66,8 +70,8 @@ def main():
     print(f"  → Parsed {len(parsed_files)} files")
     print()
 
-    # Step 2: Process with Claude (ONE API call)
-    print("STEP 2: Processing with Claude...")
+    # Step 2: Process with the LLM (ONE API call)
+    print("STEP 2: Processing with LLM...")
     processor = LLMProcessor()
     result = processor.process_all(parsed_files)
     print(f"  → Topics discovered: {result.topics}")

@@ -1,7 +1,7 @@
 """
 Smart Extractor Module
 Pre-processes large/machine-generated files to extract only meaningful content
-before sending to Claude.
+before sending to the LLM.
 
 This module handles:
 - api-test-9-25.log: Scans for human comments in 10,001 lines

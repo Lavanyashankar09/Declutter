@@ -1,6 +1,6 @@
 """
 Journal Generator Module
-Takes Claude's processed notes and saves as markdown files by topic.
+Takes the processed notes and saves as markdown files by topic.
 """
 
 import os
